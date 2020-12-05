@@ -1,5 +1,5 @@
 [package]
-name = "AOC2020"
+name = "aoc2020"
 version = "0.1.0"
 authors = ["msp"]
 edition = "2018"
