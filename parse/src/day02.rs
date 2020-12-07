@@ -9,7 +9,7 @@ pub struct Rule {
     character: char
 }
 
-pub fn validate(password_rule: &Rule, password: &str) -> bool {
+pub fn validate((password_rule, password): &(Rule, &str)) -> bool {
     let mut count_dict: HashMap<char, i32> = HashMap::new();
     for pass_char in password.chars() {
         let curr_count = count_dict.get(&pass_char);
@@ -64,8 +64,8 @@ mod tests {
 
     fn test_validate() {
        let pr = super::Rule{ count_range: std::ops::Range{ start: 1, end: 5}, character: 'a'} ;
-       assert_eq!(super::validate(&pr, "caaaat"), true);
-       assert_eq!(super::validate(&pr, "ct"), false);
-       assert_eq!(super::validate(&pr, "caaaaat"), false);
+       assert_eq!(super::validate((pr, "caaaat")), true);
+       assert_eq!(super::validate((pr, "ct")), false);
+       assert_eq!(super::validate((pr, "caaaaat")), false);
     }
 }
